@@ -1,0 +1,28 @@
+# @package _global_
+
+defaults:
+  - override /trainer: default.yaml
+  - override /model: gsl-mash.yaml
+  - override /datamodule: partial_text_bert.yaml
+  - override /callbacks: wandb.yaml
+  - override /logger: wandb.yaml
+
+seed: 56
+
+logger:
+  wandb:
+    name: 'g10k1n1'
+    tags: ['partial', 'BERT']
+
+model:
+  api_embed_path: embeddings/partial/text_bert_api_embeddings.npy
+  mashup_embed_channels: 768
+  mlp_output_channels: 900
+  lr: 0.0001
+  #0.00055 波动较大，最优的结果很优，最弱的结果很弱，弱的结果loss非常小  
+  #0.001 结果不是很大，相对平庸
+  #0.00045 和第一条相差不大
+  #0.0001 神中神  
+  #0.0003 神中神  best
+
+  #lr05 lr09 lr08 lr02 
